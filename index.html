@@ -1,0 +1,484 @@
+'<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoVisión - App de Reciclaje Escolar</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ================= PANTALLA DE LOGIN ================= -->
+    <div id="pantalla-login">
+        <div class="login-card">
+            <h1>♻️ EcoVisión</h1>
+            <p>Ingresa tus credenciales institucionales</p>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="documento">Número de Documento:</label>
+                <input type="password" id="documento" placeholder="Ingresa tu documento" required>
+            </div>
+
+            <button class="btn-login" onclick="iniciarSesion()">Ingresar al Sistema</button>
+        </div>
+    </div>
+
+  <!-- ================= APLICACIÓN PRINCIPAL ================= -->
+    <div id="app-container" style="display:none;">
+        <header>
+            <div class="brand"><span class="brand-icon">♻️</span> EcoVisión</div>
+            <div class="user-info">
+                <span id="info-usuario">👤 Myle (Estudiante)</span>
+                <button class="btn-cerrar-sesion" onclick="cerrarSesion()">Salir</button>
+            </div>
+        </header>
+
+        <nav id="menu-navegacion">
+            <button class="active" onclick="document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active')); document.getElementById('informacion').classList.add('active'); document.querySelectorAll('#menu-navegacion button').forEach(b => b.classList.remove('active')); this.classList.add('active');">ℹ️ Información</button>
+            <button onclick="document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active')); document.getElementById('clasificacion').classList.add('active'); document.querySelectorAll('#menu-navegacion button').forEach(b => b.classList.remove('active')); this.classList.add('active');">🗑️ Clasificar</button>
+            <button onclick="document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active')); document.getElementById('manualidades').classList.add('active'); document.querySelectorAll('#menu-navegacion button').forEach(b => b.classList.remove('active')); this.classList.add('active');">🎨 Manualidades</button>
+            <button onclick="document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active')); document.getElementById('quiz').classList.add('active'); document.querySelectorAll('#menu-navegacion button').forEach(b => b.classList.remove('active')); this.classList.add('active');">📝 Quiz</button>
+            <button onclick="cambiarSeccion('videos', this)">🎬 Videos</button>
+        </nav>
+
+        <main>
+            <!-- SECCIÓN: INFORMACIÓN -->
+            <section id="informacion" class="seccion">
+                <h2>EcoVisión</h2>
+                <p class="subtitulo">Nuestra misión, visión y objetivos orientan el cuidado del medio ambiente.</p>
+
+                <div class="info-grid">
+                    <article class="info-card-mision">
+                        <span class="info-etiqueta">🎯 Misión</span>
+                        <p>Promover la conciencia ambiental en la comunidad educativa mediante la educación, la separación adecuada de residuos y la práctica responsable del reciclaje para generar hábitos sostenibles.</p>
+                    </article>
+
+                    <article class="info-card-mision">
+                        <span class="info-etiqueta">🌱 Visión</span>
+                        <p>Ser una institución modelada por la sostenibilidad, donde estudiantes, docentes y familias adopten acciones ecológicas y contribuyan a un entorno más limpio y saludable.</p>
+                    </article>
+
+                    <article class="info-card-mision">
+                        <span class="info-etiqueta">🌍 Objetivo general</span>
+                        <p>Fortalecer la cultura ambiental en la comunidad escolar a través del aprendizaje práctico sobre reciclaje, reducción y reutilización de residuos.</p>
+                    </article>
+
+                    <article class="info-card-mision">
+                        <span class="info-etiqueta">♻️ Objetivos específicos</span>
+                        <p>Identificar correctamente los residuos, desarrollar hábitos de separación y reciclaje, y generar actividades creativas que fomenten la responsabilidad ambiental.</p>
+                    </article>
+                </div>
+
+            </section>
+
+            <!-- SECCIÓN: VIDEOS -->
+            <section id="videos" class="seccion">
+                <h2>Videos para aprender a reciclar</h2>
+                <p class="subtitulo">Mira estos videos y descubre cómo aplicar las 3R y separar los residuos.</p>
+                <div class="videos-section">
+                    <div class="videos-grid">
+                        <article class="video-card">
+                            <h4>Reducir, reutilizar y reciclar</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/cvakvfXj0KE?rel=0" title="Reducir, reutilizar y reciclar, video educativo de Happy Learning Español" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Conoce las 3R y algunas formas de cuidar el planeta en la vida diaria.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Aprende a separar materiales reciclables</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/YgES1DyjeGs?rel=0" title="Aprende a reciclar plástico, vidrio y papel, video educativo de Kids Academy Español" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Identifica materiales comunes que pueden recuperarse mediante el reciclaje.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Compostaje en casa</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/ehKN83Asf7w?rel=0" title="Agrokids: el compostaje, una práctica sustentable para todos, de AGROSAVIA TV" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Aprende cómo transformar restos orgánicos en abono mediante el compostaje.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Educación ambiental para primaria</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PL_Y3qbepMRoYjRJliwxO83r2Sz4Aa_hKA" title="Lista de videos de educación ambiental para primaria, de Happy Learning Español" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Explora más contenidos sobre reciclaje, agua, plantas y cuidado de los animales.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Aprendiendo a separar la basura</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/Nn6AiHTOuPU?rel=0" title="Aprendiendo a separar la basura, video para niños de Planeta Preescolar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Aprende por qué es importante separar la basura y cómo hacerlo correctamente.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>¿Cómo se hace el compost?</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/MEhD--BWwyc?rel=0" title="Cómo se hace el compost explicado para niños, de CNTV Infantil" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Descubre cómo los restos orgánicos pueden convertirse en abono.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Residuos y reciclaje: Planeta Darwin</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/DweX0pLybpQ?rel=0" title="Residuos y reciclaje explicado para niños: Planeta Darwin, de CNTV Infantil" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Aprende por qué es importante separar y gestionar correctamente los residuos.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Cuidemos el medio ambiente</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/TgD-DF86a9c?rel=0" title="Cuidemos el medio ambiente, video educativo de Happy Learning Español" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Una propuesta educativa para aprender a proteger nuestro planeta.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Separando la basura</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/wlsXGwu4Mt8?rel=0" title="Separando la basura, video educativo para niños" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Una explicación breve para aprender a clasificar los residuos.</p>
+                        </article>
+
+                        <article class="video-card">
+                            <h4>Aprende a cuidar la Tierra</h4>
+                            <div class="video-frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/vEvNDOjzTkc?rel=0" title="Aprende a cuidar la Tierra: reciclaje y agua, de Aprende con Santiago y Dhara" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p>Ideas para cuidar el planeta con acciones cotidianas.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CLASIFICACIÓN -->
+            <section id="clasificacion" class="seccion">
+                <div class="medio-ambiente-grid">
+                    <article class="medio-ambiente-card">
+                        <h2>¿Por qué es importante cuidar el medio ambiente?</h2>
+                        <p>Cuidar el medio ayuda a reducir la contaminación, proteger a los animales y plantas, y garantizar un planeta saludable para todos nosotros.</p>
+                    </article>
+                    <article class="medio-ambiente-card">
+                        <h2>¿Cómo reciclar ayuda al cuidar el medio ambiente?</h2>
+                        <p>Reciclar ayuda al medio ambiente porque reduce la contaminación, disminuye la cantidad de basura y permite reutilizar materiales, contribuyendo a proteger nuestro planeta</p>
+                    </article>
+                </div>
+                <div class="canecas-guia-grid" aria-label="Guía de colores de las canecas">
+                    <button class="caneca-guia caneca-guia-verde" type="button" onclick="mostrarInfoCaneca('verde')" aria-haspopup="dialog" aria-controls="caneca-dialogo" aria-label="Ver información de la caneca verde">
+                        <span class="caneca-guia-titulo"><span class="caneca-reciclaje-icono" aria-hidden="true">♻</span> Caneca verde</span>
+                    </button>
+                    <button class="caneca-guia caneca-guia-blanca" type="button" onclick="mostrarInfoCaneca('blanca')" aria-haspopup="dialog" aria-controls="caneca-dialogo" aria-label="Ver información de la caneca blanca">
+                        <span class="caneca-guia-titulo"><span class="caneca-reciclaje-icono" aria-hidden="true">♻</span> Caneca blanca</span>
+                    </button>
+                    <button class="caneca-guia caneca-guia-gris" type="button" onclick="mostrarInfoCaneca('gris')" aria-haspopup="dialog" aria-controls="caneca-dialogo" aria-label="Ver información de la caneca gris">
+                        <span class="caneca-guia-titulo"><span class="caneca-reciclaje-icono" aria-hidden="true">♻</span> Caneca gris</span>
+                    </button>
+                    <button class="caneca-guia caneca-guia-roja" type="button" onclick="mostrarInfoCaneca('roja')" aria-haspopup="dialog" aria-controls="caneca-dialogo" aria-label="Ver información de la caneca roja">
+                        <span class="caneca-guia-titulo"><span class="caneca-reciclaje-icono" aria-hidden="true">♻</span> Caneca roja</span>
+                    </button>
+                </div>
+                <dialog id="caneca-dialogo" class="caneca-dialogo" aria-labelledby="caneca-dialogo-titulo">
+                    <div class="caneca-dialogo-cabecera">
+                        <h3 id="caneca-dialogo-titulo"></h3>
+                        <form method="dialog">
+                            <button class="caneca-dialogo-cerrar" aria-label="Cerrar información">×</button>
+                        </form>
+                    </div>
+                    <p id="caneca-dialogo-texto"></p>
+                    <form method="dialog">
+                        <button class="caneca-dialogo-boton-cerrar">Cerrar</button>
+                    </form>
+                </dialog>
+                <h2>¿Dónde va este residuo?</h2>
+                <p class="subtitulo">Selecciona un residuo para saber en qué caneca depositarlo.</p>
+
+                <div class="grid-residuos">
+                    <button class="btn-residuo" onclick="clasificar('Botella de plástico', 'blanco', 'El plástico es reciclable. La caneca blanca es para residuos aprovechables.')">🥤 Botella Plástico</button>
+                    <button class="btn-residuo" onclick="clasificar('Cáscara de banano', 'verde', 'Los residuos orgánicos van en la caneca verde para compostaje.')">🍌 Cáscara de Banano</button>
+                    <button class="btn-residuo" onclick="clasificar('Pila usada', 'rojo', 'Las pilas son residuos peligrosos. Van en la caneca roja para evitar contaminación.')">🔋 Pila Usada</button>
+                    <button class="btn-residuo" onclick="clasificar('Papel de cuaderno', 'blanco', 'El papel es reciclable. Va en la caneca blanca (aprovechables).')">📄 Papel</button>
+                    <button class="btn-residuo" onclick="clasificar('Servilleta sucia', 'gris', 'El papel sucio no es reciclable. Va en la caneca gris (no aprovechables).')">🧻 Servilleta Sucia</button>
+                    <button class="btn-residuo" onclick="clasificar('Envase de vidrio', 'blanco', 'El vidrio es 100% reciclable. Va en la caneca blanca.')">🍾 Vidrio</button>
+                    <button class="btn-residuo" onclick="clasificar('Lata de atún', 'blanco', 'El metal es reciclable. Va en la caneca blanca (aprovechables).')">🥫 Lata de Atún</button>
+                    <button class="btn-residuo" onclick="clasificar('Medicamento vencido', 'rojo', 'Los medicamentos son residuos peligrosos. Van en la caneca roja.')">💊 Medicamento</button>
+                </div>
+
+                <div id="resultado" class="resultado-clasificacion">
+                    <h3 id="res-titulo"></h3>
+                    <p id="res-mensaje"></p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: MANUALIDADES -->
+            <section id="manualidades" class="seccion">
+                <h2>Manualidades ecológicas</h2>
+                <p class="subtitulo">Ideas creativas para reutilizar materiales y cuidar el medio ambiente.</p>
+
+                <div class="crafts-section">
+                    <div class="crafts-grid">
+                        <button class="craft-btn" onclick="mostrarManualidad('macetero', this)" aria-controls="detalle-manualidad" aria-pressed="false">🍼 Macetero de botella</button>
+                        <button class="craft-btn" onclick="mostrarManualidad('papel', this)" aria-controls="detalle-manualidad" aria-pressed="false">📄 Papel reciclado</button>
+                        <button class="craft-btn" onclick="mostrarManualidad('portalapices', this)" aria-controls="detalle-manualidad" aria-pressed="false">🧴 Portalápices decorado</button>
+                        <button class="craft-btn" onclick="mostrarManualidad('huerto', this)" aria-controls="detalle-manualidad" aria-pressed="false">🌱 Mini huerto</button>
+                        <button class="craft-btn" onclick="mostrarManualidad('organizador', this)" aria-controls="detalle-manualidad" aria-pressed="false">📦 Organizador escolar</button>
+                        <button class="craft-btn" onclick="mostrarManualidad('arte', this)" aria-controls="detalle-manualidad" aria-pressed="false">🎨 Collage reciclado</button>
+                    </div>
+                    <div id="detalle-manualidad" class="craft-detail" aria-live="polite" hidden></div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: QUIZ -->
+            <section id="quiz" class="seccion">
+                <h2>Quiz de Aprendizaje Ambiental</h2>
+                <div class="quiz-card">
+                    <div id="quiz-interaccion">
+                        <div class="quiz-status">
+                            <div class="quiz-status-labels">
+                                <span id="quiz-progreso-texto">Pregunta 1 de 10</span>
+                                <span id="quiz-puntaje">0.0 / 5.0 puntos</span>
+                            </div>
+                            <div id="quiz-progreso" class="quiz-progress" role="progressbar" aria-label="Progreso del quiz" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+                                <span id="quiz-progreso-barra"></span>
+                            </div>
+                        </div>
+                        <p class="quiz-instruccion">Elige una respuesta. ¡Cada acierto suma medio punto!</p>
+                    
+                    <div class="pregunta active" id="q1">
+                        <h3>1. ¿En qué caneca se depositan los residuos aprovechables como el plástico y el papel?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q1', this, true)">Caneca Blanca</button>
+                            <button onclick="responder('q1', this, false)">Caneca Verde</button>
+                            <button onclick="responder('q1', this, false)">Caneca Roja</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q2">
+                        <h3>2. ¿Qué tipo de residuo va en la caneca verde?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q2', this, false)">Plásticos y latas</button>
+                            <button onclick="responder('q2', this, true)">Residuos orgánicos (restos de comida)</button>
+                            <button onclick="responder('q2', this, false)">Papel y cartón</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q3">
+                        <h3>3. Las pilas usadas y medicamentos vencidos son residuos...</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q3', this, false)">Aprovechables</button>
+                            <button onclick="responder('q3', this, false)">Orgánicos</button>
+                            <button onclick="responder('q3', this, true)">Peligrosos (Caneca Roja)</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q4">
+                        <h3>4. ¿Cuál es el color de la caneca para residuos NO aprovechables?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q4', this, false)">Blanca</button>
+                            <button onclick="responder('q4', this, false)">Verde</button>
+                            <button onclick="responder('q4', this, true)">Gris</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q5">
+                        <h3>5. El código de colores para la separación de residuos en Colombia está regulado por la...</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q5', this, true)">Resolución 2184 de 2019</button>
+                            <button onclick="responder('q5', this, false)">Ley 100 de 1993</button>
+                            <button onclick="responder('q5', this, false)">Resolución 1111 de 2017</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q6">
+                        <h3>6. ¿Qué significa "reducir" en las 3R de la sostenibilidad?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q6', this, false)">Comprar más productos</button>
+                            <button onclick="responder('q6', this, true)">Consumir menos y evitar generar residuos</button>
+                            <button onclick="responder('q6', this, false)">Reciclar todo lo posible</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q7">
+                        <h3>7. ¿En qué caneca se debe depositar una botella de vidrio?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q7', this, false)">Verde</button>
+                            <button onclick="responder('q7', this, true)">Blanca</button>
+                            <button onclick="responder('q7', this, false)">Roja</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q8">
+                        <h3>8. ¿Qué es la contaminación cruzada de residuos?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q8', this, false)">Mezclar residuos de diferentes colegios</button>
+                            <button onclick="responder('q8', this, true)">Mezclar residuos aprovechables con no aprovechables, arruinando el reciclaje</button>
+                            <button onclick="responder('q8', this, false)">Transportar residuos peligrosos</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q9">
+                        <h3>9. Un envase de yogur vacío y limpio, ¿en qué caneca va?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q9', this, false)">Gris (no aprovechable)</button>
+                            <button onclick="responder('q9', this, true)">Blanca (aprovechable)</button>
+                            <button onclick="responder('q9', this, false)">Verde (orgánico)</button>
+                        </div>
+                    </div>
+
+                    <div class="pregunta" id="q10">
+                        <h3>10. ¿Cuál es el principal beneficio ambiental del reciclaje?</h3>
+                        <div class="opciones">
+                            <button onclick="responder('q10', this, false)">Aumentar la cantidad de basura</button>
+                            <button onclick="responder('q10', this, false)">Ganar dinero rápidamente</button>
+                            <button onclick="responder('q10', this, true)">Reducir el consumo de recursos naturales y la contaminación</button>
+                        </div>
+                    </div>
+                    
+                        <div id="quiz-feedback" class="quiz-feedback" role="status" aria-live="polite" hidden></div>
+                        <div class="quiz-actions">
+                            <span id="quiz-mensaje">Tómate tu tiempo y piensa en el planeta.</span>
+                            <button id="quiz-siguiente" class="quiz-next" type="button" onclick="avanzarQuiz()" hidden disabled>Siguiente pregunta</button>
+                        </div>
+                    </div>
+                    <div id="resultado-quiz" class="resultado-quiz" aria-live="polite">
+                        <h3 id="nota-final"></h3>
+                        <p id="texto-resultado-quiz">Tu nota ha sido guardada. El docente podrá verla en su panel.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: PANEL DOCENTE -->
+            <section id="panel-docente" class="seccion">
+                <h2>Panel del Docente</h2>
+                <div class="card">
+                    <h3 class="titulo-verde">Resultados de Quizzes (Sobre 5.0)</h3>
+                    <table id="tabla-quizzes">
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Nota (sobre 5.0)</th>
+                                <th>Porcentaje</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <dialog id="dialogo-revision-quiz" class="dialogo-revision-quiz" aria-labelledby="revision-quiz-titulo">
+                    <div class="revision-quiz-cabecera">
+                        <div>
+                            <h3 id="revision-quiz-titulo">Revisión del quiz</h3>
+                            <p id="revision-quiz-estudiante"></p>
+                        </div>
+                        <form method="dialog">
+                            <button class="revision-quiz-cerrar" aria-label="Cerrar revisión">×</button>
+                        </form>
+                    </div>
+                    <div id="revision-quiz-contenido" class="revision-quiz-contenido"></div>
+                </dialog>
+
+                <div class="card registro-scroll-card">
+                    <h3 class="titulo-verde">Registro de Clasificaciones</h3>
+                    <div class="registro-tabla-scroll">
+                        <table id="tabla-registros-docente">
+                            <thead>
+                                <tr>
+                                    <th>Estudiante</th>
+                                    <th>Residuo</th>
+                                    <th>Caneca</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card registro-scroll-card">
+                    <h3 class="titulo-verde">Registro de Manualidades</h3>
+                    <div class="registro-tabla-scroll">
+                        <table id="tabla-registros-manualidades">
+                            <thead>
+                                <tr>
+                                    <th>Estudiante</th>
+                                    <th>Manualidad</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: PANEL COORDINADOR -->
+            <section id="panel-coordinador" class="seccion">
+                <h2>Panel del Coordinador</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-box"><h3 id="stat-total-clasificaciones">0</h3><p>Clasificaciones</p></div>
+                    <div class="stat-box"><h3 id="stat-total-quizzes">0</h3><p>Quizzes Realizados</p></div>
+                    <div class="stat-box"><h3 id="stat-usuarios-unicos">0</h3><p>Usuarios Registrados</p></div>
+                    <div class="stat-box"><h3 id="stat-promedio">0.0</h3><p>Promedio General</p></div>
+                </div>
+
+                <div class="card">
+                    <h3 class="titulo-azul">📋 Historial de Usuarios Registrados</h3>
+                    <table id="tabla-ingresos">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Documento</th>
+                                <th>Rol</th>
+                                <th>Último Ingreso</th>
+                                <th>Ingresos</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="titulo-naranja">📊 Registro Extendido de Actividades</h3>
+                    <table id="tabla-registros-coordinador">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Rol</th>
+                                <th>Tipo</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="titulo-rojo">⚙️ Acciones del Coordinador</h3>
+                    <p>Usa estas opciones para administrar la información del sistema.</p>
+                    <div class="acciones-admin">
+                        <button class="btn-admin btn-rojo" onclick="terminarDia()">🌙 Terminar Día (Respaldo + Borrar)</button>
+                        <button class="btn-admin btn-azul" onclick="exportarDatos()">💾 Exportar Datos Manualmente</button>
+                        <button class="btn-admin btn-verde" onclick="document.getElementById('input-importar').click()">📂 Importar Datos</button>
+                        <input type="file" id="input-importar" accept=".json" style="display:none" onchange="importarDatos(event)">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>Proyecto EcoVisión - Colegio San José de Peralta &copy; 2026</footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
